@@ -14,41 +14,58 @@ class AddCourse extends Component {
       super(props);
       this.state = {open: false, course:{ } };
     };
-    
+	
+    //Functions for when add button is clicked opens the modal form to enter id
     handleClickOpen = () => {
       this.setState( {open:true} );
     };
-
+	
+	//Function to close modal form
     handleClose = () => {
       this.setState( {open:false} );
     };
-
+	
+	//Function to handle input field change
     handleChange = (event) => {
+	  //id value entered by user
       this.setState({course:{course_id: event.target.value}});
     }
 
-  // Save course and close modal form
+    //Function to add a course and close modal form
     handleAdd = () => {
+		//call method when complete and close
        this.props.addCourse(this.state.course);
        this.handleClose();
     }
-
+	
+	//display the modal form to enter course id, cancel, or add buttons
     render()  { 
       return (
           <div>
+		  
+			{/*button to open the dialog*/}
             <Button variant="outlined" color="primary" style={{margin: 10}} onClick={this.handleClickOpen}>
               Add Course
             </Button>
+			
+			{/*dialog component*/}
             <Dialog open={this.state.open} onClose={this.handleClose}>
+			
                 <DialogTitle>Add Course</DialogTitle>
+				
                 <DialogContent  style={{paddingTop: 20}} >
+				  {/*text field to enter id*/}
                   <TextField autoFocus fullWidth label="Course Id" name="course_id" onChange={this.handleChange}  /> 
                 </DialogContent>
+				
+				{/*dialog contains button actions to cancel or add*/}
                 <DialogActions>
                   <Button color="secondary" onClick={this.handleClose}>Cancel</Button>
                   <Button id="Add" color="primary" onClick={this.handleAdd}>Add</Button>
                 </DialogActions>
-              </Dialog>      
+				
+              </Dialog> 
+			  
           </div>
       ); 
     }

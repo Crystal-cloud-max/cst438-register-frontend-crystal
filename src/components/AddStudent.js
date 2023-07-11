@@ -31,10 +31,8 @@ class AddStudent extends Component {
 	
 	//Function to handle input field change
     handleChange = (event) => {
-	//name value entered by user
-      //this.setState({[event.target.name]: event.target.value});
-	  this.setState({student:{name: event.target.value}});
-	   this.setState({student:{email: event.target.value}});
+	  //name and value of student's name and email entered by user
+      this.setState({[event.target.name]: event.target.value});
     }
 
     //Function to add a student and close modal form
